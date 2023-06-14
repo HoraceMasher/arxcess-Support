@@ -1,0 +1,32 @@
+<div class="container">
+  <hr>
+  
+  <!-- Ticket form component -->
+  <app-tickets-form ></app-tickets-form>
+ 
+
+  <!-- Submitted tickets table -->
+  <table class="table mt-4">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Last Activity</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets"  (click)="selectTicket(ticket)">
+        <td>{{ ticket.id }}</td>
+        <td>{{ ticket.name }}</td>
+        <td>{{ ticket.dateCreated  | date : 'medium'  }}</td>
+        <td>{{ ticket.lastActivity | date : 'medium'  }}</td>
+        <td>{{ ticket.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--Ticket details-->
+  <app-ticket-details [ticket]="selectedTicket"></app-ticket-details>
+</div>

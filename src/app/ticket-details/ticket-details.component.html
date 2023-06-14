@@ -1,0 +1,19 @@
+
+<section>
+  <div class="container mt-5">
+    <div class="card" *ngIf="ticket">
+      <div class="card-header">
+        <h5 class="ticket-title">{{ ticket.name}} {{ticket.id}}</h5>
+        <p class="ticket-subtitle" ><a href="mailto">horaceasher@rejoyous.com</a> </p>
+      </div>
+      <div class="card-body">
+        <p class="ticket-details">{{ticket.message}}</p>
+        </div>
+      <div class="card-footer">
+        <p>Created: {{ticket.lastActivity}}</p>
+        <p>Status: {{ticket.status}}</p>
+        <button class="btn btn-primary" (click)="toggleTicketStatus()">{{ ticket.status === 'Open' ? 'Close' : 'Open' }} Ticket</button>
+      </div>
+    </div>
+  </div>
+  </section>
