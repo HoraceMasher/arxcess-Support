@@ -8,6 +8,7 @@ export interface  Ticket {
     lastActivity: Date;
     status: string;
     message: string;
+    messages:string[];
 }
 
 
@@ -95,5 +96,31 @@ export class TicketsService {
       this.tickets[index] = ticket;
     }
   }
- 
+
+//   addMessageToTicket(ticketId: string, messages: string): void {
+//     const ticket = this.getTicketById(ticketId);
+//     if (ticket) {
+//       ticket.messages.push(messages);
+//       ticket.lastActivity = new Date();
+//     }
+//   }
+
+//   updateLastActivity(ticket: Ticket) {
+//     ticket.lastActivity = new Date();
+//   }
+// }
+addMessage(ticketId: string, message: string): void {
+  const ticket = this.getTicketById(ticketId);
+  ticket!.messages = []
+  console.log(ticket);
+  if (ticket) {
+    ticket.messages.push(message); // Push the new message to the ticket's messages array
+    console.log(message);
+    console.log(ticket.messages);
+    ticket.lastActivity = new Date(); // Update the lastActivity date
+  }
+}
+
+
+
 }
