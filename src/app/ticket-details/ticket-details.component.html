@@ -2,14 +2,12 @@
   <div class="container mt-5">
     <div class="card" *ngIf="ticket">
       <div class="card-header">
-        <h5 class="ticket-title">{{ ticket.name }}</h5>
-        <p class="ticket-subtitle"><a href="mailto:horaceasher@rejoyous.com">horaceasher@rejoyous.com</a></p>
+        <h5 class="ticket-title">{{ticket.id}} <span>{{ ticket.name }}</span></h5>
+        <p class="ticket-subtitle"> <i class="bi bi-person-circle bi-lg"></i>  <span><a href="mailto:horaceasher@rejoyous.com">horaceasher@rejoyous.com</a></span></p>
       </div>
       <div class="card-body">
         <p class="ticket-details">{{ ticket.message }}</p>
-        <div *ngFor="let message of ticket.messages">
-          <p class="ticket-details">{{ message }}</p>
-        </div>
+        
       </div>
       <div class="card-footer">
         <p>Created: {{ ticket.lastActivity | date : 'medium' }}</p>
@@ -19,11 +17,18 @@
       </div>
     </div>
 
+    
+    <!-- New message cards -->
+    <div class="card mt-3" *ngFor="let message of messageCards" >
+      <div class="card-body">
+        <p class="ticket-details">{{ message }}</p>
+      </div>
+    </div>
     <!-- New message input and button -->
     <div class="card mt-3" *ngIf="ticket">
       <div class="card-body">
         <textarea class="form-control" [formControl]="newMessage" placeholder="Add a new message"></textarea>
-        <button class="btn btn-primary mt-3" (click)="addMessage()">Add Message</button>
+        <button class="btn btn-primary mt-3 " (click)="addMessage()">Add Message</button>
       </div>
     </div>
   </div>

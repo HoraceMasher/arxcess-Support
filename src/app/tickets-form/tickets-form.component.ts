@@ -9,7 +9,7 @@ import { TicketsService } from '../tickets.service';
   styleUrls: ['./tickets-form.component.css']
 })
 export class TicketsFormComponent implements OnInit{
-  // @Output() ticketSubmit = new EventEmitter<any>();
+   @Output() formClosed = new EventEmitter<any>();
 
   ticketForm: FormGroup;
   categories: any;
@@ -30,45 +30,7 @@ export class TicketsFormComponent implements OnInit{
 
     this.categories = ticketsService.getCategories();
   }
-    // [
-    //   {
-    //     id: 1,
-    //     name: 'Category 1',
-    //     subcategories: [
-    //       {
-    //         id: 1,
-    //         name: 'Subcategory 1',
-    //         tertiarySubcategories: [
-    //           { id: 1, name: 'Tertiary Subcategory 1' },
-    //           { id: 2, name: 'Tertiary Subcategory 2' }
-    //         ]
-    //       },
-    //       {
-    //         id: 2,
-    //         name: 'Subcategory 2',
-    //         tertiarySubcategories: [
-    //           { id: 3, name: 'Tertiary Subcategory 3' },
-    //           { id: 4, name: 'Tertiary Subcategory 4' }
-    //         ]
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'Category 2',
-    //     subcategories: [
-    //       {
-    //         id: 3,
-    //         name: 'Subcategory 3',
-    //         tertiarySubcategories: [
-    //           { id: 5, name: 'Tertiary Subcategory 5' },
-    //           { id: 6, name: 'Tertiary Subcategory 6' }
-    //         ]
-    //       }
-    //     ]
-    //   }
-    // ];
-  
+   
   ngOnInit(): void {
       this.ticketForm.valueChanges.subscribe(value =>{
         console.log(value)
@@ -93,10 +55,16 @@ export class TicketsFormComponent implements OnInit{
       // this.ticketSubmit.emit(newTicket);
       this.ticketForm.reset();
       this.ticketSubmitted = true;
+      this.formClosed.emit();    
     }
   }
+
+  
  
- 
+//  resetForm(): void {
+//   this.ticketForm.reset()
+//   this.ticketSubmitted = false;
+//  }
 
   generateTicketId(): string {
     const length = 9; // Specify the desired length of the ID

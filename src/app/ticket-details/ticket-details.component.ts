@@ -14,6 +14,7 @@ export class TicketDetailsComponent implements OnInit {
   ticketId: string = '';
   newMessage: FormControl = new FormControl(null);
   selectedTicket: any;
+  messageCards:string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +57,7 @@ export class TicketDetailsComponent implements OnInit {
     if(this.ticket){
       console.log(this.ticket);
       this.ticketsService.addMessage(this.ticket?.id, this.newMessage.value); // Call the service method to add the message
+      this.messageCards.push(this.newMessage.value)
       this.newMessage.reset(); // Clear the input field
   }
   

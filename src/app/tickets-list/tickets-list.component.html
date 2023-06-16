@@ -1,8 +1,14 @@
 <div class="container">
   <hr>
   
-  <!-- Ticket form component -->
-  <app-tickets-form ></app-tickets-form>
+<!--   
+  <ng-container *ngIf="showForm"> -->
+    <!-- Ticket form component -->
+    <app-tickets-form  *ngIf="showForm" (ticketSubmit)="createTicket($event)" (formClosed)="toggleForm()"></app-tickets-form>
+  <!-- </ng-container> -->
+ 
+  <button class="btn btn-primary mt-4" (click)="toggleForm()" *ngIf="!showForm">
+     Create New Ticket</button>
  
 
   <!-- Submitted tickets table -->
@@ -17,8 +23,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ticket of tickets"  (click)="selectTicket(ticket)">
-        <td>{{ ticket.id }}</td>
+      <tr *ngFor="let ticket of tickets"  >
+        <td><a routerLink="/ticket-details" (click)="selectTicket(ticket)">{{ ticket.id }}</a></td>
         <td>{{ ticket.name }}</td>
         <td>{{ ticket.dateCreated  | date : 'medium'  }}</td>
         <td>{{ ticket.lastActivity | date : 'medium'  }}</td>
@@ -30,3 +36,4 @@
   <!--Ticket details-->
   <app-ticket-details [ticket]="selectedTicket"></app-ticket-details>
 </div>
+<router-outlet></router-outlet>

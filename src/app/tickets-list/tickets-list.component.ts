@@ -11,6 +11,9 @@ export class TicketsListComponent implements OnInit {
  
   tickets: Ticket[] = [];
   selectedTicket: Ticket | undefined;
+  showForm: boolean =false ;
+
+
 
   constructor(
     private ticketService: TicketsService,
@@ -24,6 +27,11 @@ export class TicketsListComponent implements OnInit {
 
   createTicket(ticketData: any) {
     this.ticketService.addTicket(ticketData);
+    this.toggleForm();
+  }
+
+  toggleForm(){
+    this.showForm = !this.showForm;
   }
 
   // showTicketDetails(ticket: Ticket) {
